@@ -1,0 +1,32 @@
+{
+  "name": "node-sequential-file",
+  "version": "0.0.1",
+  "description": "Sequential file Reader and Writer",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AgileBank/node-sequential-file.git"
+  },
+  "keywords": [
+    "sequential",
+    "file",
+    "reader",
+    "writer"
+  ],
+  "author": "Gabriel Fonseca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AgileBank/node-sequential-file/issues"
+  },
+  "homepage": "https://github.com/AgileBank/node-sequential-file#readme",
+  "dependencies": {
+    "event-stream": "^3.3.2",
+    "moment-timezone": "^0.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
+  }
+}
