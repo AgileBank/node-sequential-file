@@ -8,6 +8,10 @@ var FORMAT = sequential.FORMAT;
 
 describe('Sequential Data Formatting', function () {
 
+  afterEach('Setup default Date Format', function(){
+    sequential.setDateFormat('DDMMYYYY');
+  });
+
   it('Text Formatting', function () {
     sequential.formatValue(FORMAT.TEXT, 'FOOBAR       ').should.be.eq('FOOBAR');
   });
@@ -22,6 +26,12 @@ describe('Sequential Data Formatting', function () {
 
   it('Date Formatting', function () {
     sequential.formatValue(FORMAT.DATE, '21041989').toISOString().should.be
+      .eq(moment('21041989', 'DDMMYYYY').toDate().toISOString());
+  });
+
+  it('Custom Date Formatting', function () {
+    sequential.setDateFormat('YYMMDD')
+    sequential.formatValue(FORMAT.DATE, '890421').toISOString().should.be
       .eq(moment('21041989', 'DDMMYYYY').toDate().toISOString());
   });
 });

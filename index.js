@@ -11,6 +11,7 @@ const FORMAT = module.exports.FORMAT = {
 };
 
 const DEFAULT_TZ = 'America/Sao_Paulo';
+var DEFAULT_DATE_FORMAT = 'DDMMYYYY';
 
 var formatValue = module.exports.formatValue = function formatValue(type, value){
   switch (type){
@@ -45,7 +46,7 @@ var formatValue = module.exports.formatValue = function formatValue(type, value)
   }
 
   function formatDate(property){
-    return moment.tz(property, 'DDMMYYYY', DEFAULT_TZ).toDate();
+    return moment.tz(property, DEFAULT_DATE_FORMAT, DEFAULT_TZ).toDate();
   }
 
   function insert(str, index, value) {
@@ -96,3 +97,6 @@ module.exports.readStream = function (stream, formats) {
     }))
 };
 
+module.exports.setDateFormat = function (format){
+  DEFAULT_DATE_FORMAT = format;
+}
