@@ -56,7 +56,7 @@ var formatValue = module.exports.formatValue = function formatValue(type, value)
 
 var convertRow = module.exports.convertRow = function convertRow(row, formats){
   var obj = {};
-  var hasSections = formats[0].sectionType;
+  var hasSections = formats[0].sectionType != undefined;
   if (hasSections){
     formats = getFormats();
   }
@@ -72,12 +72,14 @@ var convertRow = module.exports.convertRow = function convertRow(row, formats){
     var returnFormats;
     sections.forEach(function (section) {
       var format = section.formats[0];
-      if (getValue(format) == section.sectionType){
-
+      var sectionValue = getValue(format);
+      if (sectionValue == section.sectionType){
         returnFormats = section.formats;
         return false;
       }
     });
+    if (!returnFormats)
+      throw new Error('Section identifier for a row, is invalid. See the row: (' + row + ')');
     return returnFormats;
   }
 
@@ -92,8 +94,12 @@ module.exports.readStream = function (stream, formats) {
   return stream
     .pipe(es.split())
     .pipe(es.map(function (data, cb) {
-      var newData = convertRow(data, formats);
-      cb(null, newData);
+      try{
+        var newData = convertRow(data, formats);  
+        cb(null, newData);
+      }catch(err){
+        cb(err, null);
+      }
     }))
 };
 
