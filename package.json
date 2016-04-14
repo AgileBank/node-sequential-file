@@ -1,6 +1,6 @@
 {
   "name": "node-sequential-file",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sequential file Reader and Writer",
   "main": "index.js",
   "scripts": {
