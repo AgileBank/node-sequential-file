@@ -95,6 +95,10 @@ module.exports.readStream = function (stream, formats) {
     .pipe(es.split())
     .pipe(es.map(function (data, cb) {
       try{
+        if (data == "" || !data){
+          cb(); //skip blank lines
+          return;
+        }
         var newData = convertRow(data, formats);  
         cb(null, newData);
       }catch(err){
