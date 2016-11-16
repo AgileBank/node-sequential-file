@@ -128,10 +128,8 @@ module.exports.generateEDI = (format, data) => {
     var count = 0;
     data.forEach((row) => {
       count++;
-      console.log('ROW', row);
       addValue(formatRow(type, row, formatRules));
       if (count < data.length){
-        console.log('add new line');
         addValue('\n')
       }
     });
@@ -182,7 +180,6 @@ module.exports.generateEDI = (format, data) => {
 
   function formatNumber(value, rule){
     var zero = "0";
-    console.log('nUMBER', value);
     var zeros = rule.len - (""+value).length;
     if (zeros > 0)
       value =  Array(zeros + 1).join(zero) + value;
